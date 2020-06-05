@@ -1,0 +1,28 @@
+server:
+  port: 8401
+spring:
+  application:
+    name: eureka-server
+eureka:
+  instance:
+    #以IP地址注册到服务中心
+    #eureka.instance.prefer-ip-address=true eureka.instance.ip-address=172.12.9.0这两个参数配合使用 可以转移服务访问的ip
+    prefer-ip-address: true
+    hostname: localhost
+    metadata-map:
+      zone: zone1
+  client:
+    #通常状态下集群是在多个ip上 所以不需要开启  如果使用一个ip部署集群则需要开启否则不会注册成功
+    register-with-eureka: true
+    fetch-registry: true
+    region: region-east
+    service-url:
+      zone1: http://localhost:8401/eureka/,http://localhost:8402/eureka/
+      zone2: http://localhost:8403/eureka/,http://localhost:8404/eureka/
+    availability-zones:
+      region-east: zone1,zone2
+  server:
+    #等待同步时间 毫秒
+    wait-time-in-ms-when-sync-empty: 10000
+    #自动保护模式
+#    enable-self-preservation: false

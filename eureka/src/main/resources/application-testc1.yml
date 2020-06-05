@@ -1,0 +1,19 @@
+server:
+  port: 8401
+spring:
+  application:
+    name: eureka-server
+eureka:
+  instance:
+    prefer-ip-address: true
+    hostname: localhost
+  client:
+    register-with-eureka: true
+    fetch-registry: true
+    service-url:
+      defaultZone: http://localhost:8402/eureka/,http://localhost:8401/eureka/
+  server:
+    #等待同步时间 毫秒
+    wait-time-in-ms-when-sync-empty: 10000
+    #自动保护模式
+#    enable-self-preservation: false

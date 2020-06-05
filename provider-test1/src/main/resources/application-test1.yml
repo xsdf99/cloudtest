@@ -1,0 +1,17 @@
+spring:
+  application:
+    name: provider-test1
+
+server:
+  port: 8411
+
+eureka:
+  instance:
+    prefer-ip-address: true
+    hostname: localhost
+    instance-id: provider-test1-8411
+  client:
+    register-with-eureka: true
+    fetch-registry: true
+    service-url:
+      defaultZone: http://localhost:8402/eureka/,http://localhost:8401/eureka/
